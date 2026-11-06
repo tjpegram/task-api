@@ -14,8 +14,17 @@ paths:
   /tasks:
     get:
       summary: List all tasks
+
       tags:
         - Tasks
+      parameters:
+        - name: completed
+          required: false
+          in: query
+          description: Filter tasks by the completed indicator
+          schema:
+            type: boolean
+            example: true
       responses:
         '200':
           description: OK
