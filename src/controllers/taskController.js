@@ -1,7 +1,19 @@
 import * as taskService from '../services/taskService.js';
 
+function parseBool(incoming) {
+	if (incoming === undefined)
+		return undefined
+	if (incoming.toLowerCase() === 'true')
+		return true
+	if (incoming.toLowerCase() === 'false')
+		return false
+}
+
 export async function getTasks(req, res, next) {
-  const tasks = await taskService.getAllTasks();
+	let options = {
+		complete : parseBool(req.query.completed)
+	}
+  const tasks = await taskService.getAllTasks(options);
   res.json(tasks);
 }
 

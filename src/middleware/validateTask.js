@@ -1,4 +1,4 @@
-import { body } from 'express-validator';
+import { body, query } from 'express-validator';
 import { checkValidationResults } from './handleValidationErrors.js';
 
 export const validateTask = [
@@ -18,3 +18,11 @@ export const validateTask = [
 
   checkValidationResults,
 ];
+
+export const validateQuery = [ 
+	query('completed')
+	.optional()
+	.isBoolean()
+	.withMessage("completed must be a boolean"),
+	checkValidationResults,
+]
